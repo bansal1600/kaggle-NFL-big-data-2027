@@ -1,0 +1,9 @@
+# Competition data (CC BY-NC 4.0, ~2.3 GB) - download with scripts/download_data.sh
+data/
+
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.venv/
+.env
+.DS_Store
