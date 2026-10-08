@@ -1,0 +1,249 @@
+{
+ "coverage_overall": 0.8193700351006835,
+ "coverage_by_trait": {
+  "brake": 0.8219102161463144,
+  "bend": 0.8311472381304268,
+  "burst": 0.7978939589876224,
+  "top_speed": 0.8265287271383706
+ },
+ "coverage_by_role": {
+  "CB": 0.8172554347826086,
+  "EDGE": 0.8514150943396226,
+  "IDL": 0.7386363636363636,
+  "IOL": 0.8157108721624851,
+  "OT": 0.8392,
+  "S": 0.8196457326892109,
+  "TE": 0.7427385892116183,
+  "WR": 0.8370892018779342
+ },
+ "coverage_by_test_season": {
+  "2023": 0.7888434579439252,
+  "2024": 0.8284418356456777,
+  "2025": 0.8227730152814015
+ },
+ "hit_rates": [
+  {
+   "snaps": "10-50",
+   "rows": 3460,
+   "share_flagged": 0.10289017341040463,
+   "top_quarter_finish_above_median": 0.7608695652173914,
+   "bottom_quarter_finish_below_median": 0.8023255813953488,
+   "n_top": 184,
+   "n_bottom": 172,
+   "band80_coverage": 0.8309248554913294
+  },
+  {
+   "snaps": "51-100",
+   "rows": 3520,
+   "share_flagged": 0.19829545454545455,
+   "top_quarter_finish_above_median": 0.8186813186813187,
+   "bottom_quarter_finish_below_median": 0.7724550898203593,
+   "n_top": 364,
+   "n_bottom": 334,
+   "band80_coverage": 0.8477272727272728
+  },
+  {
+   "snaps": "101-200",
+   "rows": 4860,
+   "share_flagged": 0.25267489711934155,
+   "top_quarter_finish_above_median": 0.8540268456375839,
+   "bottom_quarter_finish_below_median": 0.8386075949367089,
+   "n_top": 596,
+   "n_bottom": 632,
+   "band80_coverage": 0.8320987654320988
+  },
+  {
+   "snaps": "200+",
+   "rows": 9812,
+   "share_flagged": 0.3041174072564207,
+   "top_quarter_finish_above_median": 0.8796423658872077,
+   "bottom_quarter_finish_below_median": 0.8588235294117647,
+   "n_top": 1454,
+   "n_bottom": 1530,
+   "band80_coverage": 0.798817774154097
+  }
+ ],
+ "rows": 21652,
+ "rho_by_budget": [
+  {
+   "budget": 10,
+   "trait": "bend",
+   "rho": 0.2355074882894554
+  },
+  {
+   "budget": 20,
+   "trait": "bend",
+   "rho": 0.34793010604977953
+  },
+  {
+   "budget": 35,
+   "trait": "bend",
+   "rho": 0.45457013585115863
+  },
+  {
+   "budget": 50,
+   "trait": "bend",
+   "rho": 0.5121282970951972
+  },
+  {
+   "budget": 75,
+   "trait": "bend",
+   "rho": 0.5204428003292879
+  },
+  {
+   "budget": 100,
+   "trait": "bend",
+   "rho": 0.56830200056523
+  },
+  {
+   "budget": 150,
+   "trait": "bend",
+   "rho": 0.5981268941441552
+  },
+  {
+   "budget": 200,
+   "trait": "bend",
+   "rho": 0.5969678220050202
+  },
+  {
+   "budget": 300,
+   "trait": "bend",
+   "rho": 0.6565778385758018
+  },
+  {
+   "budget": 10,
+   "trait": "brake",
+   "rho": 0.22640961195660822
+  },
+  {
+   "budget": 20,
+   "trait": "brake",
+   "rho": 0.2776519521788811
+  },
+  {
+   "budget": 35,
+   "trait": "brake",
+   "rho": 0.2809026324869273
+  },
+  {
+   "budget": 50,
+   "trait": "brake",
+   "rho": 0.3281808094445223
+  },
+  {
+   "budget": 75,
+   "trait": "brake",
+   "rho": 0.3775920061070214
+  },
+  {
+   "budget": 100,
+   "trait": "brake",
+   "rho": 0.4069825440144295
+  },
+  {
+   "budget": 150,
+   "trait": "brake",
+   "rho": 0.44792708097707623
+  },
+  {
+   "budget": 200,
+   "trait": "brake",
+   "rho": 0.537848060472641
+  },
+  {
+   "budget": 300,
+   "trait": "brake",
+   "rho": 0.5915589527131342
+  },
+  {
+   "budget": 10,
+   "trait": "burst",
+   "rho": 0.35294692533410604
+  },
+  {
+   "budget": 20,
+   "trait": "burst",
+   "rho": 0.4050269112587589
+  },
+  {
+   "budget": 35,
+   "trait": "burst",
+   "rho": 0.4655429599714831
+  },
+  {
+   "budget": 50,
+   "trait": "burst",
+   "rho": 0.5143674477544211
+  },
+  {
+   "budget": 75,
+   "trait": "burst",
+   "rho": 0.5555179560000975
+  },
+  {
+   "budget": 100,
+   "trait": "burst",
+   "rho": 0.6150781919742503
+  },
+  {
+   "budget": 150,
+   "trait": "burst",
+   "rho": 0.6041175325165837
+  },
+  {
+   "budget": 200,
+   "trait": "burst",
+   "rho": 0.615046088731808
+  },
+  {
+   "budget": 300,
+   "trait": "burst",
+   "rho": 0.7148364748000238
+  },
+  {
+   "budget": 10,
+   "trait": "top_speed",
+   "rho": 0.31900127203443895
+  },
+  {
+   "budget": 20,
+   "trait": "top_speed",
+   "rho": 0.3726248855757752
+  },
+  {
+   "budget": 35,
+   "trait": "top_speed",
+   "rho": 0.4711940603295469
+  },
+  {
+   "budget": 50,
+   "trait": "top_speed",
+   "rho": 0.4911029187977499
+  },
+  {
+   "budget": 75,
+   "trait": "top_speed",
+   "rho": 0.5570624158990305
+  },
+  {
+   "budget": 100,
+   "trait": "top_speed",
+   "rho": 0.5634633159579748
+  },
+  {
+   "budget": 150,
+   "trait": "top_speed",
+   "rho": 0.5858462939816779
+  },
+  {
+   "budget": 200,
+   "trait": "top_speed",
+   "rho": 0.6307166990090242
+  },
+  {
+   "budget": 300,
+   "trait": "top_speed",
+   "rho": 0.6713372022178622
+  }
+ ]
+}

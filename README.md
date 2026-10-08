@@ -44,6 +44,15 @@ Four movement traits (top speed, burst, brake and bend) are computed by **one** 
 - **Change of direction is stable in games (split-half 0.63–0.95) but not at the Combine.** A single position-drill rep repeats at 0.24–0.31, two drills agree at 0.01–0.14, and 0 of 144 position-drill → NFL tests survive a family-wise permutation test.
 - **Max-effort tests are the exception.** The tracked short shuttle predicts DL NFL burst (0.59) and brake (0.63), and NFL burst predicts edge-rusher pressure rate (0.43).
 
+## Weekly trait card (in-season tool)
+
+[`scripts/make_trait_cards.py`](scripts/make_trait_cards.py) → [`reports/trait_cards/`](reports/trait_cards): every week, each player's top speed, burst, brake and bend from his season-to-date NFL snaps. Each value comes as a **projected rest-of-season percentile within his role** (WR, TE, CB, S, OT, IOL, EDGE, IDL) with an 80% band.
+
+- **Shrinkage.** Projections are pulled toward average by how predictive n snaps have been historically. Correlation with rest-of-season rises from ~0.3 at 10 snaps to ~0.6 at 100 and ~0.7 at 300.
+- **Bands.** Band widths are season-blocked conformal: learned from errors on held-out seasons. Held out a full season, they cover **82%** of outcomes (target 80%).
+- **Flags.** "Top/bottom quarter" flags are right **76–88%** of the time, against a 50% coin flip. They fire for 10% of player-weeks at 10–50 snaps and 30% at 200+.
+- **Drift.** Season tracking drift is removed first; see "Measurement drift" in the writeup.
+
 ## Setup
 
 ```bash
@@ -66,6 +75,7 @@ src/bdb27/
   reliability.py        Combine retest, cross-drill agreement, NFL split-half, Spearman-Brown
   combine_features.py   per-attempt kinematics from Combine tracking (drill-name harmonisation lives here)
   game_features.py      regular-season production rates (player_play) + in-game speed ceilings
+  trait_card.py         weekly trait card: season-to-date traits, calibration, conformal bands, held-out coverage
   routes.py             route-break mechanics (Combine route drills vs NFL routes; exploratory)
   bend.py, pass_rush.py DL Run-the-Hoop bend and in-game pass-rush kinematics (exploratory)
 scripts/
@@ -73,6 +83,7 @@ scripts/
   build_features.py     build all processed tables
   make_report.py        every number + figure in the writeup
   make_notebook.py      generate the Kaggle notebook from the package source
+  make_trait_cards.py   weekly trait cards + held-out validation + example cards
   first_look.py         early correlation screen vs. outcomes, controlling for draft slot
 reports/                writeup, figures, results
 notebooks/              Kaggle notebook
