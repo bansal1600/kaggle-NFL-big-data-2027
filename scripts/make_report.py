@@ -62,7 +62,9 @@ def load():
     base = data.player_base()
     ct = pl.read_parquet(P / "combine_traits.parquet")
     at = pl.read_parquet(P / "combine_attempt_traits.parquet")
-    pt = pl.read_parquet(P / "game_play_traits.parquet")
+    # Remove season-level tracking drift (estimated from the same players across seasons) before anything else.
+    pt = traits.season_adjust(pl.read_parquet(P / "game_play_traits.parquet"), data.games(),
+                              base.select("nfl_id", pl.col("pos_group").alias("group")))
     gt = traits.game_player_traits(pt)
     go = pl.read_parquet(P / "game_outcomes.parquet")
     return base, ct, at, pt, gt, go
@@ -256,13 +258,14 @@ def bootstrap_ci(x, y, Z, B=2000, seed=0):
 def main():
     base, ct, at, pt, gt, go = load()
     FIG.mkdir(parents=True, exist_ok=True)
-    ctl = base.select("nfl_id", "pos_group", "nfl_position", "combine_weight").drop_nulls()
+    ctl = base.select("nfl_id", "pos_group", "nfl_position", "combine_weight", "draft_year").drop_nulls()
     res = {}
 
     retest = rl.combine_retest(at, ctl, GROUPS)
     cross = rl.cross_drill(ct, ctl, GROUPS)
     game = rl.game_split_half(pt, ctl, GROUPS)
-    summ = rl.summary(retest, cross, game)
+    summ = rl.summary(retest, cross, game).sort("group", "trait")
+    retest = retest.sort("group", "drill", "trait")
     summ.write_csv(data.REPORTS / "reliability_summary.csv")
     retest.write_csv(data.REPORTS / "combine_retest.csv")
     res["reliability"] = summ.sort("group", "trait").to_dicts()
@@ -277,7 +280,12 @@ def main():
     res["position_drill_survivors"] = pos_drills.filter(pl.col("p_fwer") < 0.05).height
 
     # Pooled reps-needed table: median single-rep retest per trait across groups and drills.
-    reps = (retest.group_by("trait").agg(r=pl.col("r").median(), drills=pl.col("drill").n_unique())
+    # Table 1: position drills (coach-led) per trait, plus the tracked 40 for top speed.
+    pos_rt = (retest.filter(pl.col("drill") != "FORTY_YARD_DASH").group_by("trait")
+              .agg(r=pl.col("r").median(), drills=pl.col("drill").n_unique()).with_columns(source=pl.lit("position drills")))
+    forty_rt = (retest.filter((pl.col("drill") == "FORTY_YARD_DASH") & (pl.col("trait") == "top_speed")).group_by("trait")
+                .agg(r=pl.col("r").median(), drills=pl.col("drill").n_unique()).with_columns(source=pl.lit("tracked 40")))
+    reps = (pl.concat([forty_rt, pos_rt]).sort("source", "trait")
             .with_columns(reps_for_0_8=pl.col("r").map_elements(rl.reps_needed, return_dtype=pl.Float64)))
     res["reps_needed"] = reps.to_dicts()
 
@@ -290,8 +298,10 @@ def main():
     # Bootstrap CIs for the headline correlations.
     wr = base.filter(pl.col("pos_group") == "WR").join(gt, on="nfl_id").join(
         ct.filter(pl.col("drill_name") == "FORTY_YARD_DASH").select("nfl_id", "top_speed"), on="nfl_id").drop_nulls(["top_speed", "combine_weight"])
+    wr = wr.sort("nfl_id")  # bootstrap resamples depend on row order
     res["fig4"]["ci_tracked"] = bootstrap_ci(wr["top_speed"].to_numpy(), wr["game_top_speed"].to_numpy(), tr._controls(wr))
     dl = base.filter(pl.col("pos_group") == "DL").join(gt, on="nfl_id").join(go, on="nfl_id").filter(pl.col("pass_rush_snaps") >= 100).drop_nulls(["pressure_rate", "combine_weight"])
+    dl = dl.sort("nfl_id")
     res["fig5"]["ci_burst_pressure"] = bootstrap_ci(dl["game_burst"].to_numpy(), dl["pressure_rate"].to_numpy(), tr._controls(dl))
 
     res["coverage"] = {"players": base.height, "with_game_traits": gt.height,

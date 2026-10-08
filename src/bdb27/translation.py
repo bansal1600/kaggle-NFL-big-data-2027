@@ -3,7 +3,8 @@
 For each position group, trait and Combine source (a tracked drill or an
 official measurement) we report the Spearman correlation with the player's
 in-game trait, and the partial Spearman correlation controlling for body
-weight and NFL roster position (e.g. DT vs DE vs OLB), so that size and role
+weight, NFL roster position (e.g. DT vs DE vs OLB) and draft year (Combine
+tracking drifts between years), so that size, role and measurement drift
 cannot masquerade as translation.
 """
 from __future__ import annotations
@@ -32,9 +33,12 @@ def partial_spearman(x: np.ndarray, y: np.ndarray, Z: np.ndarray) -> float:
 
 
 def _controls(d: pl.DataFrame) -> np.ndarray:
+    """Weight rank + roster-position dummies + draft-year dummies (Combine tracking drifts by year)."""
     cols = [rank(d["combine_weight"].to_numpy())]
-    pos = d["nfl_position"].to_dummies()
-    cols += [pos[c].to_numpy().astype(float) for c in pos.columns[1:]]
+    for col in ("nfl_position", "draft_year"):
+        if col in d.columns:
+            dummies = d[col].cast(pl.String).to_dummies()
+            cols += [dummies[c].to_numpy().astype(float) for c in dummies.columns[1:]]
     Z = np.column_stack(cols)
     return Z[:, Z.std(0) > 0]
 
@@ -53,7 +57,7 @@ def _sources(base: pl.DataFrame, combine_traits: pl.DataFrame, trait: str) -> di
 def translation_map(base: pl.DataFrame, combine_traits: pl.DataFrame, game_traits: pl.DataFrame,
                     groups: tuple[str, ...]) -> pl.DataFrame:
     rows = []
-    players = base.select("nfl_id", "pos_group", "nfl_position", "combine_weight").join(game_traits, on="nfl_id")
+    players = base.select("nfl_id", "pos_group", "nfl_position", "combine_weight", "draft_year").join(game_traits, on="nfl_id")
     for grp in groups:
         g = players.filter(pl.col("pos_group") == grp)
         for t in traits.TRAITS:
@@ -78,7 +82,7 @@ def add_fwer(tmap: pl.DataFrame, base: pl.DataFrame, combine_traits: pl.DataFram
     searched over ~15-20 drills/tests per family.
     """
     rng = np.random.default_rng(seed)
-    players = base.select("nfl_id", "pos_group", "nfl_position", "combine_weight").join(game_traits, on="nfl_id")
+    players = base.select("nfl_id", "pos_group", "nfl_position", "combine_weight", "draft_year").join(game_traits, on="nfl_id")
     out = []
     for (grp, t), fam in tmap.group_by(["group", "trait"], maintain_order=True):
         g = players.filter(pl.col("pos_group") == grp).drop_nulls([f"game_{t}", "combine_weight"]).sort("nfl_id")

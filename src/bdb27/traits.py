@@ -100,3 +100,52 @@ def game_player_traits(play_traits: pl.DataFrame, q: float = 0.9, min_plays: int
         .agg([pl.col(t).quantile(q).alias(f"game_{t}") for t in TRAITS] + [pl.len().alias("game_plays")])
         .filter(pl.col("game_plays") >= min_plays)
     )
+
+
+def season_offsets(play_traits: pl.DataFrame, games: pl.DataFrame, groups: pl.DataFrame, iters: int = 200) -> pl.DataFrame:
+    """Season-level measurement drift in each trait and position group, from the SAME players across seasons.
+
+    `groups` maps nfl_id -> group (we use the Combine position group). Within
+    each group: two-way fixed effects (player + season) on player-season means
+    of the per-snap maxima, weighted by snaps, solved by alternating weighted
+    demeaning; offsets are centred so the snap-weighted average is zero.
+    The drift is not uniform: in 2023 games, WR burst reads ~0.66 yd/s^2 higher
+    than in 2024-25 for the same receivers, other groups ~0.2-0.3. That is a
+    tracking change, not a change in the athletes.
+    """
+    ps = (play_traits.join(games.select("game_id", "season"), on="game_id")
+          .join(groups.select("nfl_id", "group"), on="nfl_id")
+          .group_by("nfl_id", "group", "season").agg([pl.col(t).mean() for t in TRAITS] + [pl.len().alias("w")]))
+    rows = []
+    for (grp,), pg in ps.group_by(["group"], maintain_order=True):
+        seasons = sorted(pg["season"].unique().to_list())
+        for t in TRAITS:
+            d = pg.drop_nulls(t)
+            b = {s: 0.0 for s in seasons}
+            for _ in range(iters):
+                a = (d.with_columns(r=pl.col(t) - pl.col("season").replace_strict(b, return_dtype=pl.Float64))
+                     .group_by("nfl_id").agg(a=(pl.col("r") * pl.col("w")).sum() / pl.col("w").sum()))
+                bb = (d.join(a, on="nfl_id").with_columns(r=pl.col(t) - pl.col("a"))
+                      .group_by("season").agg(b=(pl.col("r") * pl.col("w")).sum() / pl.col("w").sum()))
+                b = dict(zip(bb["season"].to_list(), bb["b"].to_list()))
+            wsum = d.group_by("season").agg(pl.col("w").sum())
+            wmap = dict(zip(wsum["season"].to_list(), wsum["w"].to_list()))
+            centre = sum(b[s] * wmap[s] for s in seasons) / sum(wmap.values())
+            rows += [{"group": grp, "season": s, "trait": t, "offset": b[s] - centre} for s in seasons]
+    return pl.DataFrame(rows).sort("group", "trait", "season")
+
+
+def season_adjust(play_traits: pl.DataFrame, games: pl.DataFrame, groups: pl.DataFrame,
+                  offsets: pl.DataFrame | None = None) -> pl.DataFrame:
+    """Subtract each (position group, season) measurement offset from the per-snap trait maxima.
+
+    Players without a group keep their raw values.
+    """
+    offsets = season_offsets(play_traits, games, groups) if offsets is None else offsets
+    wide = offsets.pivot(on="trait", index=["group", "season"], values="offset").rename({t: f"_off_{t}" for t in TRAITS})
+    out = (play_traits.join(games.select("game_id", "season"), on="game_id", how="left")
+           .join(groups.select("nfl_id", "group"), on="nfl_id", how="left")
+           .join(wide, on=["group", "season"], how="left")
+           .with_columns([pl.col(t) - pl.col(f"_off_{t}").fill_null(0.0) for t in TRAITS]))
+    assert out.height == play_traits.height
+    return out.drop([f"_off_{t}" for t in TRAITS] + ["season", "group"])

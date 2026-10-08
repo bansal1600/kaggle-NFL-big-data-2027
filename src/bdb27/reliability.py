@@ -1,7 +1,7 @@
 """How repeatable is each trait, at the Combine and on Sundays?
 
-Three reliabilities, all computed on residualised ranks (body weight and NFL
-roster position partialled out, exactly like the translation map):
+Three reliabilities, all computed on residualised ranks (body weight, NFL
+roster position and draft year partialled out, exactly like the translation map):
 
 * Combine retest      - attempt 1 vs attempt 2 of the same drill
 * Combine cross-drill - the same trait in two *different* drills
@@ -34,14 +34,14 @@ def reps_needed(r: float, target: float = 0.8) -> float:
 
 
 def combine_retest(attempts: pl.DataFrame, base: pl.DataFrame, groups) -> pl.DataFrame:
-    at = (attempts.sort("nfl_id", "drill_name", "attempt")
+    at = (attempts.sort("nfl_id", "drill_name", "attempt", "event_id")  # event_id breaks ties deterministically
           .with_columns(k=pl.int_range(pl.len()).over("nfl_id", "drill_name"))
           .filter(pl.col("k") < 2)
           .join(base, on="nfl_id"))
     rows = []
     for grp in groups:
         for (drill,), g in at.filter(pl.col("pos_group") == grp).group_by("drill_name"):
-            w = g.pivot(on="k", index=["nfl_id", "combine_weight", "nfl_position"], values=list(traits.TRAITS)).drop_nulls()
+            w = g.pivot(on="k", index=["nfl_id", "combine_weight", "nfl_position", "draft_year"], values=list(traits.TRAITS)).drop_nulls()
             if w.height < MIN_PAIRS or "top_speed_1" not in w.columns:
                 continue
             for t in traits.TRAITS:
@@ -57,7 +57,7 @@ def cross_drill(combine_traits: pl.DataFrame, base: pl.DataFrame, groups, min_pl
         cg = c.filter(pl.col("pos_group") == grp)
         drills = cg.group_by("drill_name").len().filter(pl.col("len") >= min_players)["drill_name"].sort().to_list()
         for a, b in itertools.combinations(drills, 2):
-            pair = (cg.filter(pl.col("drill_name") == a).select("nfl_id", "combine_weight", "nfl_position", *traits.TRAITS)
+            pair = (cg.filter(pl.col("drill_name") == a).select("nfl_id", "combine_weight", "nfl_position", "draft_year", *traits.TRAITS)
                     .join(cg.filter(pl.col("drill_name") == b).select("nfl_id", *traits.TRAITS), on="nfl_id", suffix="_b"))
             for t in traits.TRAITS:
                 d = pair.drop_nulls([t, f"{t}_b"])
