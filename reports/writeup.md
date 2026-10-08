@@ -33,7 +33,7 @@ Tracking rows are 10 Hz positions. We ignore the provided speed, acceleration an
 
 Exactly the same code runs on a Combine rep and on the first five seconds after an NFL snap (Figure 1). A player's **NFL trait** is the 90th percentile of his per-snap maxima, his "top 10% of snaps" (min. 50 snaps; 337 players qualify). His **Combine trait** for a drill is his best rep.
 
-![Figure 1](fig1_one_pipeline.png)
+![Figure 1: one pipeline for Combine and NFL](figure-1-one-pipeline.png)
 *Figure 1. Bend is lateral acceleration. Byron Young's Run-the-Hoop rep (left) and one of his NFL pass rushes (right) are coloured by the same scale and computed by the same function.*
 
 **Controls everywhere.** A 330-lb tackle and a 190-lb corner differ in every trait for reasons no scout needs a sensor to see. All correlations are therefore **partial Spearman ρ within a position group**, controlling for body weight and roster position (e.g. DT vs DE vs OLB). The question is always whether a measurement separates players *of the same size and role*.
@@ -46,7 +46,7 @@ We measure reliability three ways, using the same controls:
 - **Combine cross-drill:** the same trait measured in two *different* drills (e.g. brake in the curl route vs brake in the gauntlet).
 - **NFL split-half:** odd vs even snaps, Spearman–Brown corrected.
 
-![Figure 2](fig2_reliability.png)
+![Figure 2: reliability](figure-2-reliability.png)
 *Figure 2. Reliability of each trait by position group. Blue (NFL) sits far right for every trait; the Combine markers do not.*
 
 Three things stand out:
@@ -74,7 +74,7 @@ Next we correlate every Combine source with the *same* trait in the player's NFL
 
 Searching many drills guarantees some impressive-looking correlations by chance. Within each family we therefore shuffle the NFL trait across players 1,000 times, recompute every test, and compare each observed ρ with the distribution of the *family maximum*. This gives a family-wise p-value that already accounts for picking the best drill.
 
-![Figure 3](fig3_translation_map.png)
+![Figure 3: translation map](figure-3-translation-map.png)
 *Figure 3. Strongest single source in each cell; ✱ = family-wise p < 0.05. Red cells are as informative as blue ones: when the "best" drill has the wrong sign, the family is noise.*
 
 Five relationships survive:
@@ -95,14 +95,14 @@ The pattern follows Figure 2 exactly. What translates comes from **max-effort, s
 
 ### Receivers: speed travels, and the sensor reads it better
 
-![Figure 4](fig4_wr_speed.png)
+![Figure 4: WR speed](figure-4-wr-speed.png)
 *Figure 4. WR NFL top speed (90th percentile of snaps) vs the tracked 40 peak speed and the official 40 time.*
 
 Tracked peak speed from the 40 explains NFL top speed better than the official time from the same sprint (ρ 0.58 [95% bootstrap CI 0.40–0.72] vs 0.49). The time is an *average* over 40 yards, so it mixes start, acceleration and top-end. The sensor isolates the top-end, which is the part a receiver uses on a vertical route.
 
 ### Defensive line: shuttle burst → NFL burst → pressure
 
-![Figure 5](fig5_dl_burst.png)
+![Figure 5: DL burst](figure-5-dl-burst.png)
 *Figure 5. Left: tracked shuttle burst vs NFL burst (holds within edge and interior players). Right: NFL burst vs pressure rate per pass rush (unblocked pressures excluded), with partial ρ overall and within role.*
 
 The chain has two links:

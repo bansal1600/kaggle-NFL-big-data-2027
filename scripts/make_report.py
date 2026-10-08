@@ -104,14 +104,14 @@ def fig_concept(base, pt):
         ax.set_xlabel("yards")
     cb = fig.colorbar(sc, ax=axes, fraction=0.025, pad=0.02)
     cb.set_label("lateral acceleration (yd/s², speed ≥ 2 yd/s)")
-    fig.suptitle(f"One pipeline for both settings: {name}'s bend at the Combine and on Sundays", x=0.01, ha="left", fontsize=13, fontweight="bold")
-    save(fig, "fig1_one_pipeline.png")
+    fig.suptitle(f"Figure 1  |  One pipeline for both settings: {name}'s bend at the Combine and on Sundays", x=0.01, ha="left", fontsize=13, fontweight="bold")
+    save(fig, "figure-1-one-pipeline.png")
     return {"player": name}
 
 
 # --------------------------------------------------------------------------- figure 2
 def fig_reliability(summ: pl.DataFrame):
-    fig, axes = plt.subplots(1, 4, figsize=(12, 3.6), sharey=True)
+    fig, axes = plt.subplots(1, 4, figsize=(12, 4.0), sharey=True)
     series = [("combine_cross_drill", "Combine: same trait, different drill", AQUA, "s"),
               ("combine_retest", "Combine: same drill, 2nd attempt", ORANGE, "D"),
               ("nfl_split_half", "NFL: odd vs even snaps", BLUE, "o")]
@@ -123,21 +123,25 @@ def fig_reliability(summ: pl.DataFrame):
             if row.is_empty():
                 continue
             vals = [row[c][0] for c, *_ in series]
-            finite = [v for v in vals if v is not None]
-            ax.plot([min(finite), max(finite)], [ypos[g]] * 2, color=GRID, lw=3, zorder=1)
-            for (c, lab, col, mk), v in zip(series, vals):
+            # Small vertical offsets keep coincident markers visible (e.g. DL burst, DB top speed).
+            for k, ((c, lab, col, mk), v) in enumerate(zip(series, vals)):
                 if v is not None:
-                    ax.plot(v, ypos[g], marker=mk, ms=9, color=col, mec=SURFACE, mew=1.5, ls="none", zorder=3)
+                    y = ypos[g] + (1 - k) * 0.17
+                    ax.plot([0, v], [y, y], color=GRID, lw=2, zorder=1)
+                    ax.plot(v, y, marker=mk, ms=8, color=col, mec=SURFACE, mew=1.2, ls="none", zorder=3)
         ax.set_title(TRAIT_LABEL[t])
         ax.set_xlim(-0.2, 1.0)
         ax.axvline(0, color=INK2, lw=0.8)
         ax.set_yticks(list(ypos.values()), list(ypos.keys()))
         ax.set_xlabel("reliability (partial ρ)")
     handles = [plt.Line2D([], [], marker=mk, color=col, ls="none", ms=9, mec=SURFACE, label=lab) for _, lab, col, mk in series]
-    fig.legend(handles=handles, loc="upper left", bbox_to_anchor=(0.01, 1.08), ncol=3)
-    fig.suptitle("Stable on Sundays, noisy at the Combine: change-of-direction numbers barely repeat and don't agree across drills", x=0.01, y=1.15,
+    fig.legend(handles=handles, loc="upper left", bbox_to_anchor=(0.01, 1.03), ncol=3)
+    fig.suptitle("Figure 2  |  Stable on Sundays, noisy at the Combine", x=0.01, y=1.2,
                  ha="left", fontsize=13, fontweight="bold")
-    save(fig, "fig2_reliability.png")
+    fig.text(0.01, 1.135, "Reliability by trait and position group (partial Spearman ρ; controls: weight, roster position).\n"
+             "NFL traits repeat; Combine change-of-direction numbers barely repeat and don't agree across drills.",
+             ha="left", va="top", fontsize=9.5, color=INK2, linespacing=1.3)
+    save(fig, "figure-2-reliability.png")
 
 
 # --------------------------------------------------------------------------- figure 3
@@ -172,10 +176,10 @@ def fig_translation(tmap: pl.DataFrame):
         ax.tick_params(which="minor", length=0)
     cb = fig.colorbar(im, ax=axes, fraction=0.02, pad=0.02)
     cb.set_label("partial ρ with same trait in NFL games")
-    fig.suptitle("Translation map: Combine trait vs. the same trait in NFL snaps", x=0.01, y=1.06, ha="left", fontsize=13, fontweight="bold")
+    fig.suptitle("Figure 3  |  Translation map: Combine trait vs. the same trait in NFL snaps", x=0.01, y=1.06, ha="left", fontsize=13, fontweight="bold")
     fig.text(0.01, 0.985, "Strongest single source per cell; partial Spearman ρ controlling for weight and roster position.  ✱ = family-wise permutation p < 0.05",
              ha="left", fontsize=9.5, color=INK2)
-    save(fig, "fig3_translation_map.png")
+    save(fig, "figure-3-translation-map.png")
 
 
 # --------------------------------------------------------------------------- figure 4
@@ -194,9 +198,9 @@ def fig_speed(base, ct, gt):
         ax.set_title(f"partial ρ = {r:+.2f}  (n = {len(x)})" if ax is axes[0] else f"partial ρ = {r:+.2f} on −time  (n = {len(x)})")
     axes[1].invert_xaxis()
     axes[0].set_ylabel("NFL top speed, 90th pct of snaps (mph)")
-    fig.suptitle("WR speed travels, and the sensor reads it better than the stopwatch", x=0.01, y=1.03, ha="left", fontsize=13, fontweight="bold")
+    fig.suptitle("Figure 4  |  WR speed travels, and the sensor reads it better than the stopwatch", x=0.01, y=1.03, ha="left", fontsize=13, fontweight="bold")
     fig.text(0.01, 0.955, "ρ = partial Spearman controlling for body weight", ha="left", fontsize=9.5, color=INK2)
-    save(fig, "fig4_wr_speed.png")
+    save(fig, "figure-4-wr-speed.png")
     return {"wr_speed_tracked": r1, "wr_speed_stopwatch": r2, "n_tracked": tracked.height, "n_stopwatch": stop.height}
 
 
@@ -231,10 +235,10 @@ def fig_dl(base, ct, gt, go):
         ax.set_ylabel(yl)
         ax.set_title(f"all: partial ρ = {r:+.2f} (n = {d.height})")
         ax.legend(loc="lower right" if ax is axes[0] else "upper left", fontsize=9)
-    fig.suptitle("DL burst: a timed agility rep predicts NFL burst; NFL burst predicts pressure for edge rushers",
+    fig.suptitle("Figure 5  |  DL burst: shuttle rep → NFL burst → edge-rusher pressure",
                  x=0.01, y=1.03, ha="left", fontsize=13, fontweight="bold")
     fig.text(0.01, 0.955, "ρ = partial Spearman controlling for weight and roster position, overall and within role", ha="left", fontsize=9.5, color=INK2)
-    save(fig, "fig5_dl_burst.png")
+    save(fig, "figure-5-dl-burst.png")
     return {"dl_shuttle_to_game_burst": ra, "n_shuttle": a.height, "dl_game_burst_to_pressure": rb, "n_pressure": b.height,
             "dl_game_burst_to_getoff": rc, "within_shuttle": wa, "within_pressure": wb}
 

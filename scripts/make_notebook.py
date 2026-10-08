@@ -77,7 +77,7 @@ make_report.main()"""),
     md("## Results"),
     code("""from IPython.display import Image, display
 import json
-for f in ['fig1_one_pipeline', 'fig2_reliability', 'fig3_translation_map', 'fig4_wr_speed', 'fig5_dl_burst']:
+for f in ['figure-1-one-pipeline', 'figure-2-reliability', 'figure-3-translation-map', 'figure-4-wr-speed', 'figure-5-dl-burst']:
     display(Image(filename=f'reports/figures/{f}.png'))"""),
     code("""res = json.load(open('reports/results.json'))
 print('Reliability summary (partial rho):')
