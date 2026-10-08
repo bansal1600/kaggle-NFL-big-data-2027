@@ -135,5 +135,5 @@ The weak link is participation. Only **39% of DL prospects** ran the shuttle (an
 
 ## Appendix
 
-- **Reproducible notebook:** linked to this writeup. It rebuilds every number and figure from the raw competition files in a few minutes.
+- **Reproducible notebook:** [Measure the Athlete, Not the Drill](https://www.kaggle.com/code/guaravbansal/measure-the-athlete-not-the-drill). It rebuilds every number and figure from the raw competition files in a few minutes.
 - **Methods.** Savitzky–Golay derivatives (window 7, order 2) of x/y; frames within three samples of a clip edge are dropped. NFL window: snap to snap + 5 s, regular season, non-nullified plays. Partial Spearman = Pearson correlation of rank residuals after OLS on weight rank and roster-position dummies. Family-wise p = share of 1,000 permutations whose family-maximum |ρ| ≥ observed. Bootstrap CIs use 2,000 player resamples. Drill names were harmonized across years (e.g. `LINE` → `LINE_DRILL`).

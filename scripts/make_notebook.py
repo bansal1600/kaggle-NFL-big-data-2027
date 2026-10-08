@@ -41,7 +41,8 @@ Code is in the appendix cells (written to `src/bdb27/`), and the results are sho
 hits = glob.glob('/kaggle/input/**/players.csv', recursive=True)
 if hits:
     os.environ['BDB_RAW_DIR'] = os.path.dirname(hits[0])
-print('data:', os.environ.get('BDB_RAW_DIR'))
+os.environ.setdefault('BDB_WORK_DIR', '/tmp/bdb27')  # keep data copies out of the public notebook output
+print('data:', os.environ.get('BDB_RAW_DIR'), '| work dir:', os.environ['BDB_WORK_DIR'])
 os.makedirs('src/bdb27', exist_ok=True); os.makedirs('scripts', exist_ok=True)
 try:
     import polars

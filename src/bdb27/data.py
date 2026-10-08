@@ -13,8 +13,11 @@ import polars as pl
 
 ROOT = Path(__file__).resolve().parents[2]
 RAW = Path(os.environ.get("BDB_RAW_DIR", ROOT / "data" / "raw"))
-INTERIM = ROOT / "data" / "interim"
-PROCESSED = ROOT / "data" / "processed"
+# BDB_WORK_DIR moves the Parquet cache and processed tables elsewhere (the Kaggle notebook uses /tmp
+# so that no copy of the competition data ends up in its public output).
+WORK = Path(os.environ.get("BDB_WORK_DIR", ROOT / "data"))
+INTERIM = WORK / "interim"
+PROCESSED = WORK / "processed"
 REPORTS = ROOT / "reports"
 
 NA = ["NA", ""]

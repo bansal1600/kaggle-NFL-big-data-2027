@@ -148,34 +148,6 @@
  "retest_by_drill": [
   {
    "group": "WR",
-   "drill": "FORTY_YARD_DASH",
-   "trait": "top_speed",
-   "n": 82,
-   "r": 0.8799652471109811
-  },
-  {
-   "group": "WR",
-   "drill": "FORTY_YARD_DASH",
-   "trait": "burst",
-   "n": 82,
-   "r": 0.27774225329422914
-  },
-  {
-   "group": "WR",
-   "drill": "FORTY_YARD_DASH",
-   "trait": "brake",
-   "n": 82,
-   "r": 0.3506572104926215
-  },
-  {
-   "group": "WR",
-   "drill": "FORTY_YARD_DASH",
-   "trait": "bend",
-   "n": 82,
-   "r": 0.4726008401978968
-  },
-  {
-   "group": "WR",
    "drill": "GAUNTLET_DRILL",
    "trait": "top_speed",
    "n": 93,
@@ -203,32 +175,32 @@
    "r": 0.27675085657102955
   },
   {
-   "group": "DB",
-   "drill": "LINE_DRILL",
+   "group": "WR",
+   "drill": "FORTY_YARD_DASH",
    "trait": "top_speed",
-   "n": 99,
-   "r": 0.46443594098203184
+   "n": 82,
+   "r": 0.8799652471109811
   },
   {
-   "group": "DB",
-   "drill": "LINE_DRILL",
+   "group": "WR",
+   "drill": "FORTY_YARD_DASH",
    "trait": "burst",
-   "n": 99,
-   "r": 0.3457893082505804
+   "n": 82,
+   "r": 0.27774225329422914
   },
   {
-   "group": "DB",
-   "drill": "LINE_DRILL",
+   "group": "WR",
+   "drill": "FORTY_YARD_DASH",
    "trait": "brake",
-   "n": 99,
-   "r": 0.1533294561921755
+   "n": 82,
+   "r": 0.3506572104926215
   },
   {
-   "group": "DB",
-   "drill": "LINE_DRILL",
+   "group": "WR",
+   "drill": "FORTY_YARD_DASH",
    "trait": "bend",
-   "n": 99,
-   "r": 0.33476905735010254
+   "n": 82,
+   "r": 0.4726008401978968
   },
   {
    "group": "DB",
@@ -287,32 +259,32 @@
    "r": 0.3675007026637118
   },
   {
-   "group": "OL",
-   "drill": "PASS_RUSH_DROP",
+   "group": "DB",
+   "drill": "LINE_DRILL",
    "trait": "top_speed",
-   "n": 118,
-   "r": 0.5031434260333789
+   "n": 99,
+   "r": 0.46443594098203184
   },
   {
-   "group": "OL",
-   "drill": "PASS_RUSH_DROP",
+   "group": "DB",
+   "drill": "LINE_DRILL",
    "trait": "burst",
-   "n": 118,
-   "r": 0.3002636886625372
+   "n": 99,
+   "r": 0.3457893082505804
   },
   {
-   "group": "OL",
-   "drill": "PASS_RUSH_DROP",
+   "group": "DB",
+   "drill": "LINE_DRILL",
    "trait": "brake",
-   "n": 118,
-   "r": 0.025887450751401052
+   "n": 99,
+   "r": 0.1533294561921755
   },
   {
-   "group": "OL",
-   "drill": "PASS_RUSH_DROP",
+   "group": "DB",
+   "drill": "LINE_DRILL",
    "trait": "bend",
-   "n": 118,
-   "r": 0.16886069279728722
+   "n": 99,
+   "r": 0.33476905735010254
   },
   {
    "group": "OL",
@@ -341,6 +313,34 @@
    "trait": "bend",
    "n": 84,
    "r": 0.30998756522982296
+  },
+  {
+   "group": "OL",
+   "drill": "PASS_RUSH_DROP",
+   "trait": "top_speed",
+   "n": 118,
+   "r": 0.5031434260333789
+  },
+  {
+   "group": "OL",
+   "drill": "PASS_RUSH_DROP",
+   "trait": "burst",
+   "n": 118,
+   "r": 0.3002636886625372
+  },
+  {
+   "group": "OL",
+   "drill": "PASS_RUSH_DROP",
+   "trait": "brake",
+   "n": 118,
+   "r": 0.025887450751401052
+  },
+  {
+   "group": "OL",
+   "drill": "PASS_RUSH_DROP",
+   "trait": "bend",
+   "n": 118,
+   "r": 0.16886069279728722
   },
   {
    "group": "DL",
@@ -372,34 +372,6 @@
   },
   {
    "group": "DL",
-   "drill": "PASS_RUSH_DRILL",
-   "trait": "top_speed",
-   "n": 106,
-   "r": 0.5135374775095856
-  },
-  {
-   "group": "DL",
-   "drill": "PASS_RUSH_DRILL",
-   "trait": "burst",
-   "n": 106,
-   "r": 0.10822834693909739
-  },
-  {
-   "group": "DL",
-   "drill": "PASS_RUSH_DRILL",
-   "trait": "brake",
-   "n": 106,
-   "r": 0.32793468531329256
-  },
-  {
-   "group": "DL",
-   "drill": "PASS_RUSH_DRILL",
-   "trait": "bend",
-   "n": 106,
-   "r": 0.3542280482058433
-  },
-  {
-   "group": "DL",
    "drill": "FORTY_YARD_DASH",
    "trait": "top_speed",
    "n": 84,
@@ -425,6 +397,34 @@
    "trait": "bend",
    "n": 84,
    "r": 0.4525937648193354
+  },
+  {
+   "group": "DL",
+   "drill": "PASS_RUSH_DRILL",
+   "trait": "top_speed",
+   "n": 106,
+   "r": 0.5135374775095856
+  },
+  {
+   "group": "DL",
+   "drill": "PASS_RUSH_DRILL",
+   "trait": "burst",
+   "n": 106,
+   "r": 0.10822834693909739
+  },
+  {
+   "group": "DL",
+   "drill": "PASS_RUSH_DRILL",
+   "trait": "brake",
+   "n": 106,
+   "r": 0.32793468531329256
+  },
+  {
+   "group": "DL",
+   "drill": "PASS_RUSH_DRILL",
+   "trait": "bend",
+   "n": 106,
+   "r": 0.3542280482058433
   }
  ],
  "translation_survivors": [
@@ -484,28 +484,28 @@
  "position_drill_survivors": 0,
  "reps_needed": [
   {
-   "trait": "burst",
-   "r": 0.3301080675784781,
-   "drills": 7,
-   "reps_for_0_8": 8.117243996313608
-  },
-  {
    "trait": "top_speed",
    "r": 0.6079039602259526,
    "drills": 7,
    "reps_for_0_8": 2.579986744144972
   },
   {
-   "trait": "bend",
-   "r": 0.3444985527779729,
-   "drills": 7,
-   "reps_for_0_8": 7.611079256341533
-  },
-  {
    "trait": "brake",
    "r": 0.3525319975720641,
    "drills": 7,
    "reps_for_0_8": 7.346487772878905
+  },
+  {
+   "trait": "burst",
+   "r": 0.3301080675784781,
+   "drills": 7,
+   "reps_for_0_8": 8.117243996313608
+  },
+  {
+   "trait": "bend",
+   "r": 0.3444985527779729,
+   "drills": 7,
+   "reps_for_0_8": 7.611079256341533
   }
  ],
  "fig1": {
@@ -513,7 +513,7 @@
  },
  "fig4": {
   "wr_speed_tracked": 0.5834160027327704,
-  "wr_speed_stopwatch": 0.49131214279092916,
+  "wr_speed_stopwatch": 0.4913121427909288,
   "n_tracked": 64,
   "n_stopwatch": 65,
   "ci_tracked": [
@@ -524,9 +524,9 @@
  "fig5": {
   "dl_shuttle_to_game_burst": 0.5934319006491183,
   "n_shuttle": 25,
-  "dl_game_burst_to_pressure": 0.3385079447753308,
+  "dl_game_burst_to_pressure": 0.33850794477533075,
   "n_pressure": 68,
-  "dl_game_burst_to_getoff": 0.41551050922789734,
+  "dl_game_burst_to_getoff": 0.41551050922789706,
   "within_shuttle": {
    "edge": [
     0.5697023961242864,
@@ -539,11 +539,11 @@
   },
   "within_pressure": {
    "edge": [
-    0.42526840022097706,
+    0.42526840022097695,
     42
    ],
    "interior": [
-    0.05273653979570705,
+    0.05273653979570701,
     26
    ]
   },
