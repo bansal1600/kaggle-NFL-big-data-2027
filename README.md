@@ -34,29 +34,48 @@ Things to know about the data:
 - Undrafted players have no draft pick; we treat them as pick 260.
 - Exposure differs by class: 2023 draftees have three seasons of games, 2025 draftees only one.
 
+## Entry #1: *Measure the Athlete, Not the Drill*
+
+Writeup: [`reports/writeup.md`](reports/writeup.md) · notebook: [`notebooks/measure-the-athlete.ipynb`](notebooks/measure-the-athlete.ipynb) · figures: [`reports/figures/`](reports/figures)
+
+Four movement traits (top speed, burst, brake and bend) are computed by **one** pipeline on Combine reps and on NFL snaps, then compared for the same player:
+
+- **Speed travels.** Tracked 40 peak speed repeats at ρ ≈ 0.89 and predicts WR NFL top speed better than the stopwatch time (partial ρ 0.58 vs 0.49).
+- **Change of direction is stable in games (split-half 0.63–0.95) but not at the Combine.** A single position-drill rep repeats at 0.24–0.31, two drills agree at 0.01–0.14, and 0 of 144 position-drill → NFL tests survive a family-wise permutation test.
+- **Max-effort tests are the exception.** The tracked short shuttle predicts DL NFL burst (0.59) and brake (0.63), and NFL burst predicts edge-rusher pressure rate (0.43).
+
 ## Setup
 
 ```bash
 pip install -r requirements.txt
 export KAGGLE_API_TOKEN=...          # kaggle.com → Settings → API
 ./scripts/download_data.sh           # ~500 MB zip → data/raw/ (~2.3 GB)
-python scripts/build_features.py     # → data/processed/*.parquet  (~20 s)
-python scripts/first_look.py         # → reports/first_look.md
+python scripts/build_features.py     # → data/processed/*.parquet  (~30 s)
+python scripts/make_report.py        # → reports/figures/*.png, reports/results.json (entry #1)
+python scripts/make_notebook.py      # → notebooks/measure-the-athlete.ipynb (self-contained Kaggle notebook)
+python scripts/first_look.py         # → reports/first_look.md (early exploratory screen)
 ```
 
 ## Layout
 
 ```
-src/bdb/
+src/bdb27/
   data.py               paths + loaders (large CSVs cached to Parquet in data/interim/)
-  combine_features.py   per-attempt kinematics from Combine tracking → player × drill → wide table
-  game_features.py      regular-season production rates (player_play) + in-game speed ceilings (tracking)
+  traits.py             top speed / burst / brake / bend, one pipeline for Combine reps and NFL snaps
+  translation.py        Combine -> NFL translation map, partial Spearman, family-wise permutation p-values
+  reliability.py        Combine retest, cross-drill agreement, NFL split-half, Spearman-Brown
+  combine_features.py   per-attempt kinematics from Combine tracking (drill-name harmonisation lives here)
+  game_features.py      regular-season production rates (player_play) + in-game speed ceilings
+  routes.py             route-break mechanics (Combine route drills vs NFL routes; exploratory)
+  bend.py, pass_rush.py DL Run-the-Hoop bend and in-game pass-rush kinematics (exploratory)
 scripts/
   download_data.sh      fetch competition data via the Kaggle API
   build_features.py     build all processed tables
-  first_look.py         correlation screen: combine features vs. outcomes, controlling for draft slot
-reports/                generated reports
-notebooks/              exploration
+  make_report.py        every number + figure in the writeup
+  make_notebook.py      generate the Kaggle notebook from the package source
+  first_look.py         early correlation screen vs. outcomes, controlling for draft slot
+reports/                writeup, figures, results
+notebooks/              Kaggle notebook
 ```
 
 ### Features so far

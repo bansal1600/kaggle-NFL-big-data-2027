@@ -78,7 +78,7 @@ def attempt_features(g: pl.DataFrame) -> dict:
         # Clips begin as the athlete leaves the stance, so splits run from the first frame.
         cum = np.concatenate([[0.0], np.cumsum(step)])
         tt = t - t[0]
-        for yd in (10, 20, 40):
+        for yd in (2, 5, 10, 20, 40):
             out[f"split_{yd}"] = _time_to_distance(tt, cum, s, yd)
         out["flying_10_speed"] = 10.0 / (out["split_40"] - _time_to_distance(tt, cum, s, 30))
     return out
@@ -110,7 +110,7 @@ def per_attempt(ct: pl.LazyFrame) -> pl.DataFrame:
 
 # Higher is better for these, so the best attempt is the max; everything else is averaged.
 _BEST_MAX = ["peak_speed", "peak_accel", "peak_long_accel", "peak_long_decel", "peak_ang_vel", "flying_10_speed"]
-_BEST_MIN = ["split_10", "split_20", "split_40"]
+_BEST_MIN = ["split_2", "split_5", "split_10", "split_20", "split_40"]
 
 
 def per_player_drill(att: pl.DataFrame) -> pl.DataFrame:

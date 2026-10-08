@@ -8,10 +8,12 @@ import sys
 import time
 from pathlib import Path
 
+import polars as pl
+
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
-from bdb import combine_features as cf  # noqa: E402
-from bdb import data, game_features as gf  # noqa: E402
+from bdb27 import combine_features as cf  # noqa: E402
+from bdb27 import data, game_features as gf, traits  # noqa: E402
 
 
 def main() -> None:
@@ -32,6 +34,14 @@ def main() -> None:
             data.PROCESSED / f"game_movement{suffix}.parquet"
         )
     print(f"game features done ({time.time() - t0:.0f}s)")
+
+    # Movement traits measured identically at the Combine and in games (see src/bdb27/traits.py).
+    traits.combine_attempt_traits(data.combine_tracking()).write_parquet(data.PROCESSED / "combine_attempt_traits.parquet")
+    traits.combine_traits(data.combine_tracking()).write_parquet(data.PROCESSED / "combine_traits.parquet")
+    reg = games.filter(pl.col("season_type") == "REG")["game_id"].to_list()
+    pl.concat([traits.game_play_traits(data.game_tracking(s).filter(pl.col("game_id").is_in(reg))) for s in data.SEASONS]
+              ).write_parquet(data.PROCESSED / "game_play_traits.parquet")
+    print(f"trait tables done ({time.time() - t0:.0f}s)")
 
     data.player_base().write_parquet(data.PROCESSED / "player_base.parquet")
     print(f"wrote {sorted(p.name for p in data.PROCESSED.glob('*.parquet'))}")

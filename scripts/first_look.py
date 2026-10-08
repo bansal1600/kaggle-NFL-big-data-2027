@@ -19,7 +19,7 @@ import numpy as np
 import polars as pl
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
-from bdb import data  # noqa: E402
+from bdb27 import data  # noqa: E402
 
 UNDRAFTED_PICK = 260
 LAST_SEASON = 2025

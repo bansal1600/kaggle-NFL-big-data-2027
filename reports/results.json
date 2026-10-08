@@ -1,0 +1,561 @@
+{
+ "reliability": [
+  {
+   "group": "DB",
+   "trait": "bend",
+   "nfl_split_half": 0.7250584122465228,
+   "combine_retest": 0.3675007026637118,
+   "retest_drills": 3,
+   "combine_cross_drill": 0.012725895865381271,
+   "cross_pairs": 36
+  },
+  {
+   "group": "DB",
+   "trait": "brake",
+   "nfl_split_half": 0.6478204800287569,
+   "combine_retest": 0.5265038002236269,
+   "retest_drills": 3,
+   "combine_cross_drill": 0.01214428120477771,
+   "cross_pairs": 36
+  },
+  {
+   "group": "DB",
+   "trait": "burst",
+   "nfl_split_half": 0.7183994819454861,
+   "combine_retest": 0.3457893082505804,
+   "retest_drills": 3,
+   "combine_cross_drill": 0.029612745889535236,
+   "cross_pairs": 36
+  },
+  {
+   "group": "DB",
+   "trait": "top_speed",
+   "nfl_split_half": 0.5384765889917218,
+   "combine_retest": 0.5567515083824066,
+   "retest_drills": 3,
+   "combine_cross_drill": 0.1907452109066054,
+   "cross_pairs": 36
+  },
+  {
+   "group": "DL",
+   "trait": "bend",
+   "nfl_split_half": 0.785676184322562,
+   "combine_retest": 0.3542280482058433,
+   "retest_drills": 3,
+   "combine_cross_drill": 0.030011936214436274,
+   "cross_pairs": 51
+  },
+  {
+   "group": "DL",
+   "trait": "brake",
+   "nfl_split_half": 0.682972543835629,
+   "combine_retest": 0.32793468531329256,
+   "retest_drills": 3,
+   "combine_cross_drill": 0.0306781022576924,
+   "cross_pairs": 51
+  },
+  {
+   "group": "DL",
+   "trait": "burst",
+   "nfl_split_half": 0.8282310650411856,
+   "combine_retest": 0.12987493972674188,
+   "retest_drills": 3,
+   "combine_cross_drill": 0.1354213759841453,
+   "cross_pairs": 51
+  },
+  {
+   "group": "DL",
+   "trait": "top_speed",
+   "nfl_split_half": 0.7981131353867004,
+   "combine_retest": 0.5135374775095856,
+   "retest_drills": 3,
+   "combine_cross_drill": 0.3106708495924545,
+   "cross_pairs": 51
+  },
+  {
+   "group": "OL",
+   "trait": "bend",
+   "nfl_split_half": 0.7564284118171277,
+   "combine_retest": 0.2394241290135551,
+   "retest_drills": 2,
+   "combine_cross_drill": 0.0807844068462667,
+   "cross_pairs": 45
+  },
+  {
+   "group": "OL",
+   "trait": "brake",
+   "nfl_split_half": 0.7631734421785822,
+   "combine_retest": 0.1901471177014539,
+   "retest_drills": 2,
+   "combine_cross_drill": 0.04966592637544493,
+   "cross_pairs": 45
+  },
+  {
+   "group": "OL",
+   "trait": "burst",
+   "nfl_split_half": 0.8996073918489573,
+   "combine_retest": 0.40775643045112053,
+   "retest_drills": 2,
+   "combine_cross_drill": 0.1017357137041609,
+   "cross_pairs": 45
+  },
+  {
+   "group": "OL",
+   "trait": "top_speed",
+   "nfl_split_half": 0.8058369272078648,
+   "combine_retest": 0.704451025929963,
+   "retest_drills": 2,
+   "combine_cross_drill": 0.2773405893629234,
+   "cross_pairs": 45
+  },
+  {
+   "group": "WR",
+   "trait": "bend",
+   "nfl_split_half": 0.764269010107991,
+   "combine_retest": 0.37467584838446316,
+   "retest_drills": 2,
+   "combine_cross_drill": 0.1089734460738645,
+   "cross_pairs": 104
+  },
+  {
+   "group": "WR",
+   "trait": "brake",
+   "nfl_split_half": 0.6310260312334701,
+   "combine_retest": 0.465090952739057,
+   "retest_drills": 2,
+   "combine_cross_drill": 0.01969437765459936,
+   "cross_pairs": 104
+  },
+  {
+   "group": "WR",
+   "trait": "burst",
+   "nfl_split_half": 0.9464154013777738,
+   "combine_retest": 0.33149096531195377,
+   "retest_drills": 2,
+   "combine_cross_drill": 0.12331849066210984,
+   "cross_pairs": 104
+  },
+  {
+   "group": "WR",
+   "trait": "top_speed",
+   "nfl_split_half": 0.9173867605558255,
+   "combine_retest": 0.7695108295902398,
+   "retest_drills": 2,
+   "combine_cross_drill": 0.05157864361141121,
+   "cross_pairs": 104
+  }
+ ],
+ "retest_by_drill": [
+  {
+   "group": "WR",
+   "drill": "FORTY_YARD_DASH",
+   "trait": "top_speed",
+   "n": 82,
+   "r": 0.8799652471109811
+  },
+  {
+   "group": "WR",
+   "drill": "FORTY_YARD_DASH",
+   "trait": "burst",
+   "n": 82,
+   "r": 0.27774225329422914
+  },
+  {
+   "group": "WR",
+   "drill": "FORTY_YARD_DASH",
+   "trait": "brake",
+   "n": 82,
+   "r": 0.3506572104926215
+  },
+  {
+   "group": "WR",
+   "drill": "FORTY_YARD_DASH",
+   "trait": "bend",
+   "n": 82,
+   "r": 0.4726008401978968
+  },
+  {
+   "group": "WR",
+   "drill": "GAUNTLET_DRILL",
+   "trait": "top_speed",
+   "n": 93,
+   "r": 0.6590564120694985
+  },
+  {
+   "group": "WR",
+   "drill": "GAUNTLET_DRILL",
+   "trait": "burst",
+   "n": 93,
+   "r": 0.3852396773296784
+  },
+  {
+   "group": "WR",
+   "drill": "GAUNTLET_DRILL",
+   "trait": "brake",
+   "n": 93,
+   "r": 0.5795246949854925
+  },
+  {
+   "group": "WR",
+   "drill": "GAUNTLET_DRILL",
+   "trait": "bend",
+   "n": 93,
+   "r": 0.27675085657102955
+  },
+  {
+   "group": "DB",
+   "drill": "LINE_DRILL",
+   "trait": "top_speed",
+   "n": 99,
+   "r": 0.46443594098203184
+  },
+  {
+   "group": "DB",
+   "drill": "LINE_DRILL",
+   "trait": "burst",
+   "n": 99,
+   "r": 0.3457893082505804
+  },
+  {
+   "group": "DB",
+   "drill": "LINE_DRILL",
+   "trait": "brake",
+   "n": 99,
+   "r": 0.1533294561921755
+  },
+  {
+   "group": "DB",
+   "drill": "LINE_DRILL",
+   "trait": "bend",
+   "n": 99,
+   "r": 0.33476905735010254
+  },
+  {
+   "group": "DB",
+   "drill": "BACK_PEDAL_AND_TRANSITION_45_DEGREE_REACTION",
+   "trait": "top_speed",
+   "n": 119,
+   "r": 0.5567515083824066
+  },
+  {
+   "group": "DB",
+   "drill": "BACK_PEDAL_AND_TRANSITION_45_DEGREE_REACTION",
+   "trait": "burst",
+   "n": 119,
+   "r": 0.31442682690637586
+  },
+  {
+   "group": "DB",
+   "drill": "BACK_PEDAL_AND_TRANSITION_45_DEGREE_REACTION",
+   "trait": "brake",
+   "n": 119,
+   "r": 0.7444063034754468
+  },
+  {
+   "group": "DB",
+   "drill": "BACK_PEDAL_AND_TRANSITION_45_DEGREE_REACTION",
+   "trait": "bend",
+   "n": 119,
+   "r": 0.6222704437975973
+  },
+  {
+   "group": "DB",
+   "drill": "FORTY_YARD_DASH",
+   "trait": "top_speed",
+   "n": 93,
+   "r": 0.882994497072305
+  },
+  {
+   "group": "DB",
+   "drill": "FORTY_YARD_DASH",
+   "trait": "burst",
+   "n": 93,
+   "r": 0.3965122306339798
+  },
+  {
+   "group": "DB",
+   "drill": "FORTY_YARD_DASH",
+   "trait": "brake",
+   "n": 93,
+   "r": 0.5265038002236269
+  },
+  {
+   "group": "DB",
+   "drill": "FORTY_YARD_DASH",
+   "trait": "bend",
+   "n": 93,
+   "r": 0.3675007026637118
+  },
+  {
+   "group": "OL",
+   "drill": "PASS_RUSH_DROP",
+   "trait": "top_speed",
+   "n": 118,
+   "r": 0.5031434260333789
+  },
+  {
+   "group": "OL",
+   "drill": "PASS_RUSH_DROP",
+   "trait": "burst",
+   "n": 118,
+   "r": 0.3002636886625372
+  },
+  {
+   "group": "OL",
+   "drill": "PASS_RUSH_DROP",
+   "trait": "brake",
+   "n": 118,
+   "r": 0.025887450751401052
+  },
+  {
+   "group": "OL",
+   "drill": "PASS_RUSH_DROP",
+   "trait": "bend",
+   "n": 118,
+   "r": 0.16886069279728722
+  },
+  {
+   "group": "OL",
+   "drill": "FORTY_YARD_DASH",
+   "trait": "top_speed",
+   "n": 84,
+   "r": 0.905758625826547
+  },
+  {
+   "group": "OL",
+   "drill": "FORTY_YARD_DASH",
+   "trait": "burst",
+   "n": 84,
+   "r": 0.5152491722397038
+  },
+  {
+   "group": "OL",
+   "drill": "FORTY_YARD_DASH",
+   "trait": "brake",
+   "n": 84,
+   "r": 0.3544067846515067
+  },
+  {
+   "group": "OL",
+   "drill": "FORTY_YARD_DASH",
+   "trait": "bend",
+   "n": 84,
+   "r": 0.30998756522982296
+  },
+  {
+   "group": "DL",
+   "drill": "SHORT_ZONE_BREAKS",
+   "trait": "top_speed",
+   "n": 39,
+   "r": 0.21140899812570224
+  },
+  {
+   "group": "DL",
+   "drill": "SHORT_ZONE_BREAKS",
+   "trait": "burst",
+   "n": 39,
+   "r": 0.12987493972674188
+  },
+  {
+   "group": "DL",
+   "drill": "SHORT_ZONE_BREAKS",
+   "trait": "brake",
+   "n": 39,
+   "r": -0.0910827406226189
+  },
+  {
+   "group": "DL",
+   "drill": "SHORT_ZONE_BREAKS",
+   "trait": "bend",
+   "n": 39,
+   "r": 0.2928868788680784
+  },
+  {
+   "group": "DL",
+   "drill": "PASS_RUSH_DRILL",
+   "trait": "top_speed",
+   "n": 106,
+   "r": 0.5135374775095856
+  },
+  {
+   "group": "DL",
+   "drill": "PASS_RUSH_DRILL",
+   "trait": "burst",
+   "n": 106,
+   "r": 0.10822834693909739
+  },
+  {
+   "group": "DL",
+   "drill": "PASS_RUSH_DRILL",
+   "trait": "brake",
+   "n": 106,
+   "r": 0.32793468531329256
+  },
+  {
+   "group": "DL",
+   "drill": "PASS_RUSH_DRILL",
+   "trait": "bend",
+   "n": 106,
+   "r": 0.3542280482058433
+  },
+  {
+   "group": "DL",
+   "drill": "FORTY_YARD_DASH",
+   "trait": "top_speed",
+   "n": 84,
+   "r": 0.904496699977477
+  },
+  {
+   "group": "DL",
+   "drill": "FORTY_YARD_DASH",
+   "trait": "burst",
+   "n": 84,
+   "r": 0.47097338658229443
+  },
+  {
+   "group": "DL",
+   "drill": "FORTY_YARD_DASH",
+   "trait": "brake",
+   "n": 84,
+   "r": 0.3996740994013231
+  },
+  {
+   "group": "DL",
+   "drill": "FORTY_YARD_DASH",
+   "trait": "bend",
+   "n": 84,
+   "r": 0.4525937648193354
+  }
+ ],
+ "translation_survivors": [
+  {
+   "group": "WR",
+   "trait": "top_speed",
+   "source": "FORTY_YARD_DASH",
+   "official": false,
+   "n": 64,
+   "rho": 0.6294028091393261,
+   "partial": 0.5834160027327704,
+   "p_fwer": 0.003
+  },
+  {
+   "group": "DL",
+   "trait": "brake",
+   "source": "SHORT_SHUTTLE",
+   "official": false,
+   "n": 25,
+   "rho": 0.6399999999999999,
+   "partial": 0.6283609610931282,
+   "p_fwer": 0.004
+  },
+  {
+   "group": "DL",
+   "trait": "burst",
+   "source": "SHORT_SHUTTLE",
+   "official": false,
+   "n": 25,
+   "rho": 0.7138461538461538,
+   "partial": 0.5934319006491183,
+   "p_fwer": 0.006
+  },
+  {
+   "group": "WR",
+   "trait": "top_speed",
+   "source": "forty",
+   "official": true,
+   "n": 65,
+   "rho": 0.5482718073295436,
+   "partial": 0.4913121427909293,
+   "p_fwer": 0.009
+  },
+  {
+   "group": "DB",
+   "trait": "bend",
+   "source": "broad_jump",
+   "official": true,
+   "n": 61,
+   "rho": 0.3173803758914818,
+   "partial": 0.35963253870034767,
+   "p_fwer": 0.048
+  }
+ ],
+ "n_tests": 260,
+ "position_drill_tests": 144,
+ "position_drill_survivors": 0,
+ "reps_needed": [
+  {
+   "trait": "burst",
+   "r": 0.3301080675784781,
+   "drills": 7,
+   "reps_for_0_8": 8.117243996313608
+  },
+  {
+   "trait": "top_speed",
+   "r": 0.6079039602259526,
+   "drills": 7,
+   "reps_for_0_8": 2.579986744144972
+  },
+  {
+   "trait": "bend",
+   "r": 0.3444985527779729,
+   "drills": 7,
+   "reps_for_0_8": 7.611079256341533
+  },
+  {
+   "trait": "brake",
+   "r": 0.3525319975720641,
+   "drills": 7,
+   "reps_for_0_8": 7.346487772878905
+  }
+ ],
+ "fig1": {
+  "player": "Byron Young"
+ },
+ "fig4": {
+  "wr_speed_tracked": 0.5834160027327704,
+  "wr_speed_stopwatch": 0.49131214279092916,
+  "n_tracked": 64,
+  "n_stopwatch": 65,
+  "ci_tracked": [
+   0.3969137140715369,
+   0.7184062853063119
+  ]
+ },
+ "fig5": {
+  "dl_shuttle_to_game_burst": 0.5934319006491183,
+  "n_shuttle": 25,
+  "dl_game_burst_to_pressure": 0.3385079447753308,
+  "n_pressure": 68,
+  "dl_game_burst_to_getoff": 0.41551050922789734,
+  "within_shuttle": {
+   "edge": [
+    0.5697023961242864,
+    14
+   ],
+   "interior": [
+    0.8465496682758401,
+    11
+   ]
+  },
+  "within_pressure": {
+   "edge": [
+    0.42526840022097706,
+    42
+   ],
+   "interior": [
+    0.05273653979570705,
+    26
+   ]
+  },
+  "ci_burst_pressure": [
+   0.09527853532788633,
+   0.5341422309489511
+  ]
+ },
+ "coverage": {
+  "players": 510,
+  "with_game_traits": 337,
+  "game_player_plays": 250461,
+  "combine_attempts": 6310
+ }
+}
